@@ -1,0 +1,60 @@
+﻿@model FinalProject.Models.Forumpost.GetForumPostsViewModel
+
+<div class="container mt-4">
+     <h2 class="mb-3">@Model.Title</h2>
+
+    <div class="mb-4">
+        <p><strong>Content:</strong></p>
+        <p>@Model.Content</p>
+    </div>
+
+    <div class="d-flex gap-2 mb-4">
+        <form asp-action="Vote" method="post" class="d-inline">
+            <input type="hidden" name="ForumPostId" value="@Model.Id" />
+            <input type="hidden" name="IsLike" value="true" />
+            <button type="submit" class="btn @(Model.UserVote == true ? "btn-success" : "btn-outline-success")">
+                👍 Like (@Model.LikesCount)
+            </button>
+        </form>
+
+        <form asp-action="Vote" method="post" class="d-inline">
+            <input type="hidden" name="ForumPostId" value="@Model.Id" />
+            <input type="hidden" name="IsLike" value="false" />
+            <button type="submit" class="btn @(Model.UserVote == false ? "btn-danger" : "btn-outline-danger")">
+                👎 Dislike (@Model.DislikesCount)
+            </button>
+        </form>
+    </div>
+    
+
+    <a asp-action="GetAll" class="btn btn-secondary mb-4">← Back to all forum posts</a>
+
+    <h3>Коментари</h3>
+    @if (Model.Comments.Any())
+    {
+        <ul class="list-group mb-4">
+            @foreach (var comment in Model.Comments)
+            {
+                <li class="list-group-item">
+                    <strong>@comment.AuthorName</strong>
+                    <small class="text-muted">(@comment.CreatedOn.ToString("g"))</small>:
+                    @comment.Content
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-muted mb-4">Все още няма коментари.</p>
+    }
+
+    <h3>Add comment</h3>
+    <form asp-action="AddComment" method="post" class="mb-5">
+        <input type="hidden" name="ForumPostId" value="@Model.Id" />
+        <div class="mb-3">
+            <textarea name="Content" class="form-control" rows="4" placeholder="Write your comment here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+

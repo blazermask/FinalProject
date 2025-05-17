@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "User Registration";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #444;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h1>User Registration</h1>
+
+<form asp-action="Register" asp-controller="User">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Username" />
+    </div>
+
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" />
+    </div>
+
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="FirstName" />
+    </div>
+
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="LastName" />
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
